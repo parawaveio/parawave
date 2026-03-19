@@ -43,6 +43,15 @@ dev = [
     "tqdm>=4.60",
     "hatch>=1.15",
     "twine>=6.0",
+    "papermill>=2.6",
+]
+examples = [
+    "parawave[all]",
+    "openai>=1.0",
+    "datasets>=3.0",
+    "jinja2>=3.0",
+    "papermill>=2.6",
+    "ipykernel>=6.0",
 ]
 notebook-test = [
     "parawave[dev]",

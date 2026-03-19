@@ -1,4 +1,4 @@
-.PHONY: test test-full coverage test-notebook build check publish-test publish clean
+.PHONY: test test-full coverage test-notebook build check publish-test publish clean refresh-example-outputs
 
 test:
 	uv run pytest tests/ -v --tb=short
@@ -36,6 +36,17 @@ publish: test clean
 	uv run hatch build
 	uv run twine upload --verbose dist/*
 	@echo "Published to PyPI as parawave"
+
+# Requires one-time kernel setup: uv run python -m ipykernel install --user --name python3
+# This registers the Python kernel for papermill to use when executing notebooks.
+refresh-example-outputs:
+	@test -f .env || (echo "Error: .env file not found. Create .env with OPENAI_API_KEY=your-key" && exit 1)
+	uv sync --extra examples
+	export $$(grep -v '^#' .env | xargs) && \
+	uv run papermill examples/01_quickstart.ipynb examples/01_quickstart.ipynb && \
+	uv run papermill examples/02_synthetic_data_pipeline.ipynb examples/02_synthetic_data_pipeline.ipynb && \
+	uv run papermill examples/03_advanced_synthetic_pipeline.ipynb examples/03_advanced_synthetic_pipeline.ipynb
+	@echo "All example notebooks refreshed with outputs."
 
 clean:
 	rm -rf dist/ build/ *.egg-info

@@ -10,3 +10,5 @@ build/
 htmlcov/
 .pytest_cache/
 local-dev/
+.env
+*.csv
