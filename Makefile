@@ -10,7 +10,7 @@ coverage:
 	uv run pytest tests/ -v --cov=parawave --cov-report=term-missing
 
 test-notebook:
-	uv run pytest -p nbval --nbval notebooks/test_notebook.ipynb -v
+	uv run pytest -p nbval --nbval tests/test_notebook.ipynb -v
 
 build:
 	uv run hatch build

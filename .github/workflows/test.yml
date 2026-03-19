@@ -24,4 +24,4 @@ jobs:
       - name: Run tests
         run: uv run pytest tests/ -v --tb=short --cov=parawave --cov-report=term-missing
       - name: Run notebook tests
-        run: uv run pytest -p nbval --nbval notebooks/test_notebook.ipynb -v
+        run: uv run pytest -p nbval --nbval tests/test_notebook.ipynb -v
