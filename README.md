@@ -1,4 +1,4 @@
-# ParaWave: One decorator turns any function into a durable parallel runner.
+# ParaWave: One decorator turns any function into a durable parallel runner. Zero dependencies.
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
