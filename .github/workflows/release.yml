@@ -59,9 +59,6 @@ jobs:
             echo "::error::Version mismatch: pyproject.toml has $TOML_VERSION but workflow input is ${{ inputs.version }}"
             exit 1
           fi
-      - name: Set package name for TestPyPI
-        if: inputs.target == 'testpypi'
-        run: sed -i -e 's/^name = "parawave"/name = "parawave-dev"/' -e 's/parawave\[/parawave-dev\[/g' pyproject.toml
       - name: Build
         run: uv run hatch build
       - name: Check

@@ -1,10 +1,30 @@
 [project]
 name = "parawave"
 version = "0.1.0"
-description = "Turn any function into a parallel, resilient job. One decorator, one import."
+description = "One decorator turns any function into a durable parallel runner."
 readme = "README.md"
 requires-python = ">=3.9"
 license = "MIT"
+keywords = [
+    "parallel", "async", "concurrency", "retry", "resume",
+    "llm", "batch", "synthetic-data", "durable-execution",
+    "rate-limiting", "parallel-execution", "local-temporal",
+    "openai", "api", "decorator",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
 dependencies = []
 
 [project.optional-dependencies]

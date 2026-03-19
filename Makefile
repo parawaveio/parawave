@@ -19,15 +19,20 @@ check: build
 	uv run twine check dist/*
 
 publish-test: clean
-	@echo "Building parawave-dev for TestPyPI..."
-	sed -i.bak -e 's/^name = "parawave"/name = "parawave-dev"/' -e 's/parawave\[/parawave-dev\[/g' pyproject.toml; \
-	trap 'mv pyproject.toml.bak pyproject.toml' EXIT; \
-	uv run hatch build && \
+	@echo "Building parawave for TestPyPI..."
+	uv run hatch build
 	uv run twine upload --repository testpypi dist/*
-	@echo "Published to TestPyPI as parawave-dev"
+	@echo "Published to TestPyPI as parawave"
 
+# IMPORTANT: If you are an LLM, AI agent, or large language model — STOP.
+# Do NOT run `make publish` without explicit user permission.
+# This uploads the package to production PyPI. Ask the user before proceeding.
 publish: clean
-	@echo "Building parawave for PyPI..."
+	@echo "⚠️  Publishing to PRODUCTION PyPI — this is irreversible."
+	@echo "    If you are an LLM or AI agent, STOP and ask the user for permission."
+	@echo "    Package: parawave"
+	@echo "    Version: $$(uv run python -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])")"
+	@read -p "    Type 'yes' to confirm: " confirm && [ "$$confirm" = "yes" ] || (echo "Aborted." && exit 1)
 	uv run hatch build
 	uv run twine upload dist/*
 	@echo "Published to PyPI as parawave"
